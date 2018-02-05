@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 import sys
-from cpu import get_cpu
-from system import get_system
-from ram import get_ram
-from temps import get_temps
-from disks import get_disks
-from network import get_network
-from docker_containers import get_docker
+from bin.cpu import get_cpu
+from bin.system import get_system
+from bin.ram import get_ram
+from bin.temps import get_temps
+from bin.disks import get_disks
+from bin.network import get_network
+from bin.docker_containers import get_docker
 
 
 def run():

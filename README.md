@@ -36,7 +36,7 @@ sudo apt install python3 python3-setuptools python3-pip
 ```
 
 ```bash
-sudo pip3 install docker psutils    
+sudo pip3 install docker psutils py3nvml   
 ```
 
 Run Conky:
