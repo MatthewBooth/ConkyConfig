@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import sys
 from bin.cpu import get_cpu
 from bin.system import get_system
 from bin.ram import get_ram
@@ -10,14 +9,14 @@ from bin.network import get_network
 from bin.docker_containers import get_docker
 
 
-def run(args):
+def run():
     get_system()
     get_cpu()
     get_ram()
     get_temps()
     get_disks()
-    get_network(args[1])
+    get_network()
     get_docker()
 
 
-run(sys.argv[1])
+run()
