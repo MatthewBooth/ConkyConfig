@@ -13,3 +13,34 @@ So far this shows
 * Docker status
 
 All of this is written in Python. This was my first attempt at Python and I've nicked some functions from Stackoverflow
+
+## Installation
+#### Ubuntu 16.04
+
+Clone this directory to `~/.conky`:
+
+```bash
+git clone -b master git@github.com:MatthewBooth/ConkyConfig.git ~/.conky
+```
+
+Make a symlink to your home directory:
+
+```bash
+ln -s ~/.conky/conky_config.lua ~/.conkyrc
+``` 
+
+Install any Python requirements
+
+```bash
+sudo apt install python3 python3-setuptools python3-pip
+```
+
+```bash
+sudo pip3 install docker psutils    
+```
+
+Run Conky:
+
+```bash
+conky -d
+```
