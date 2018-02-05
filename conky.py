@@ -10,14 +10,14 @@ from bin.network import get_network
 from bin.docker_containers import get_docker
 
 
-def run():
+def run(args):
     get_system()
     get_cpu()
     get_ram()
     get_temps()
     get_disks()
-    get_network(sys.argv[1])
+    get_network(args[1])
     get_docker()
 
 
-run()
+run(sys.argv[1])
