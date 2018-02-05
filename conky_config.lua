@@ -50,5 +50,5 @@ conky.config = {
 conky.text = [[
 # Run the conky Script
 # Pass the network interface name as a parameter
-${execpi 1 /home/matt/.conky/conky.py enx00e04c36010c}
+${execpi 1 ~/.conky/conky.py enx00e04c36010c}
 ]]
