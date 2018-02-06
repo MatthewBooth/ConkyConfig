@@ -1,0 +1,10 @@
+[program:conky]
+command=/usr/bin/conky -c /home/{{user}}/.conkyrc
+autostart=true
+autorestart=true
+startretries=3
+startsecs=0
+stderr_logfile=/var/log/conky.err.log
+stdout_logfile=/var/log/conky.out.log
+user={{user}}
+environment=DISPLAY=":0",HOME="/home/{{user}}"
