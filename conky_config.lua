@@ -3,12 +3,14 @@ conky.config = {
 	border_width = 0,
     own_window = true,
     own_window_class = 'Conky',
-    own_window_type = 'desktop',
+    own_window_type = 'dock',
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     own_window_transparent = false,
     own_window_argb_visual = true,
     own_window_argb_value = 192,
     own_window_colour = '000000',
+
+
     double_buffer = true,
     background = true,
     stippled_borders = 0,
