@@ -3,6 +3,8 @@
 
 import psutil
 import py3nvml.nvidia_smi as nvml
+from py3nvml import py3nvml
+
 from bin.color_scale import get_temperature_color
 
 
@@ -12,20 +14,23 @@ def get_temps():
 
 
 def __get_gpu_temps():
-    nvml.nvmlInit()
+    try:
+        nvml.nvmlInit()
+    except py3nvml.NVMLError as e:
+        pass
+    else:
+        device_count = nvml.nvmlDeviceGetCount()
 
-    device_count = nvml.nvmlDeviceGetCount()
-
-    print('\nGPU:')
-    if device_count > 0:
-        for i in range(device_count):
-            gpu_temp = nvml.nvmlDeviceGetTemperature(nvml.nvmlDeviceGetHandleByIndex(i), 0)
-            print(' GPU %(i)s: ${alignr}%(color)s%(temp)s${color}°C' % {
-                'i': i,
-                'color': get_temperature_color(gpu_temp),
-                'temp': gpu_temp
-            })
-    nvml.nvmlShutdown()
+        print('\nGPU:')
+        if device_count > 0:
+            for i in range(device_count):
+                gpu_temp = nvml.nvmlDeviceGetTemperature(nvml.nvmlDeviceGetHandleByIndex(i), 0)
+                print(' GPU %(i)s: ${alignr}%(color)s%(temp)s${color}°C' % {
+                    'i': i,
+                    'color': get_temperature_color(gpu_temp),
+                    'temp': gpu_temp
+                })
+        nvml.nvmlShutdown()
 
 
 def __get_cpu_temps():
