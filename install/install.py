@@ -1,9 +1,15 @@
 #!/usr/bin/python3
-import argparse
 import errno
 import os
 
 import jinja2
+
+
+def __write_text_to_file(content, file):
+    if os.path.exists(file):
+        f = open(file, 'w+')
+        f.write(content)
+        f.close()
 
 
 def __render_jinja_template(tpl_path, variables):
@@ -18,12 +24,11 @@ def __write_supervisor_conf(user):
         'user': user
     }
 
-    result = __render_jinja_template('install.conky.conf.j2', user_variables)
+    result = __render_jinja_template('install/supervisor.conky.conf.j2', user_variables)
 
-    supervisor_conf_file = '/etc/install/conf.d/conky.conf'
+    supervisor_conf_file = '/etc/supervisor/conf.d/conky.conf'
 
-    f = open(supervisor_conf_file, 'w')
-    f.write(result)
+    __write_text_to_file(result, supervisor_conf_file)
 
 
 def __symlink_conkyrc(user):
@@ -38,12 +43,10 @@ def __symlink_conkyrc(user):
             os.symlink(config, rc_file)
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("username", help="Your current username", type=str)
-args = parser.parse_args()
+def run():
+    user = os.getlogin()
+    __write_supervisor_conf(user)
+    __symlink_conkyrc(user)
 
-if args.username is not "":
-    __write_supervisor_conf(args.username)
-    __symlink_conkyrc(args.username)
-else:
-    print(args)
+
+run()

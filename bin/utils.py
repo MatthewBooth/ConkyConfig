@@ -3,6 +3,13 @@
 import os
 
 
+def write_text_to_file(content, file):
+    if os.path.exists(file):
+        f = open(file, 'w+')
+        f.write(content)
+        f.close()
+
+
 def which(program):
     fpath, fname = os.path.split(program)
     if fpath:

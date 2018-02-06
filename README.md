@@ -45,11 +45,11 @@ This will create a configuration for Supervisor to keep the Conky process runnin
 
 ```bash
 cd ~/.conky
-sudo ./install/install.py $USER
+sudo ./install/install.py
 ```
 
 Finally, start or restart Supervisor
 
 ```bash
-sudo service supervisord restart
+sudo service supervisor restart
 ```
