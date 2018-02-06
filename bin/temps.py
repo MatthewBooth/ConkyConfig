@@ -4,7 +4,7 @@
 import psutil
 import py3nvml.nvidia_smi as nvml
 from py3nvml import py3nvml
-
+import os
 from bin.color_scale import get_temperature_color
 
 
@@ -13,24 +13,42 @@ def get_temps():
     __get_gpu_temps()
 
 
-def __get_gpu_temps():
-    try:
-        nvml.nvmlInit()
-    except py3nvml.NVMLError as e:
-        pass
-    else:
-        device_count = nvml.nvmlDeviceGetCount()
+def __is_exe(fpath):
+    return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
-        print('\nGPU:')
-        if device_count > 0:
-            for i in range(device_count):
-                gpu_temp = nvml.nvmlDeviceGetTemperature(nvml.nvmlDeviceGetHandleByIndex(i), 0)
-                print(' GPU %(i)s: ${alignr}%(color)s%(temp)s${color}°C' % {
-                    'i': i,
-                    'color': get_temperature_color(gpu_temp),
-                    'temp': gpu_temp
-                })
-        nvml.nvmlShutdown()
+
+def __which(program):
+    fpath, fname = os.path.split(program)
+    if fpath:
+        if __is_exe(program):
+            return program
+    else:
+        for path in os.environ["PATH"].split(os.pathsep):
+            exe_file = os.path.join(path, program)
+            if __is_exe(exe_file):
+                return exe_file
+
+    return None
+
+
+def __get_gpu_temps():
+    if __which('nvidia-smi') is not None:
+        try:
+            nvml.nvmlInit()
+        except py3nvml.NVMLError as e:
+            pass
+        else:
+            device_count = nvml.nvmlDeviceGetCount()
+            print('\nGPU:')
+            if device_count > 0:
+                for i in range(device_count):
+                    gpu_temp = nvml.nvmlDeviceGetTemperature(nvml.nvmlDeviceGetHandleByIndex(i), 0)
+                    print(' GPU %(i)s: ${alignr}%(color)s%(temp)s${color}°C' % {
+                        'i': i,
+                        'color': get_temperature_color(gpu_temp),
+                        'temp': gpu_temp
+                    })
+            nvml.nvmlShutdown()
 
 
 def __get_cpu_temps():
