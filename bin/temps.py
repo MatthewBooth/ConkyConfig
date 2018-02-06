@@ -2,10 +2,9 @@
 # coding=utf-8
 
 import psutil
-import py3nvml.nvidia_smi as nvml
-from py3nvml import py3nvml
-import os
+from py3nvml import py3nvml as nvml
 from bin.color_scale import get_temperature_color
+import bin.utils as utils
 
 
 def get_temps():
@@ -13,29 +12,11 @@ def get_temps():
     __get_gpu_temps()
 
 
-def __is_exe(fpath):
-    return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
-
-
-def __which(program):
-    fpath, fname = os.path.split(program)
-    if fpath:
-        if __is_exe(program):
-            return program
-    else:
-        for path in os.environ["PATH"].split(os.pathsep):
-            exe_file = os.path.join(path, program)
-            if __is_exe(exe_file):
-                return exe_file
-
-    return None
-
-
 def __get_gpu_temps():
-    if __which('nvidia-smi') is not None:
+    if utils.which('nvidia-smi') is not None:
         try:
             nvml.nvmlInit()
-        except py3nvml.NVMLError as e:
+        except nvml.NVMLError as e:
             pass
         else:
             device_count = nvml.nvmlDeviceGetCount()
