@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 # coding=utf-8
+import textwrap
 
 import psutil
 from py3nvml import py3nvml as nvml
-from bin.color_scale import get_temperature_color
+
 import bin.utils as utils
+from bin.color_scale import get_temperature_color
 
 
 def __get_gpu_temps():
@@ -18,7 +20,8 @@ def __get_gpu_temps():
             print('\nGPU:')
             if device_count > 0:
                 for i in range(device_count):
-                    gpu_temp = nvml.nvmlDeviceGetTemperature(nvml.nvmlDeviceGetHandleByIndex(i), 0)
+                    handle = nvml.nvmlDeviceGetHandleByIndex(i)
+                    gpu_temp = nvml.nvmlDeviceGetTemperature(handle, 0)
                     print(' GPU %(i)s: ${alignr}${color %(color)s}%(temp)s${color}°C' % {
                         'i': i,
                         'color': get_temperature_color(gpu_temp),
@@ -47,6 +50,11 @@ def __get_cpu_temps():
 
 
 def __main__():
-    print('$stippled_hr\nTemperatures\n$stippled_hr\n')
+    header = textwrap.dedent("""\
+                            $stippled_hr
+                            Temperatures
+                            $stippled_hr
+                            """)
+    print(header)
     __get_cpu_temps()
     __get_gpu_temps()

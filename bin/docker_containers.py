@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import textwrap
+
 import docker
 
 
@@ -8,7 +10,13 @@ def __get_docker():
 
     container_list = client.containers.list()
     if len(container_list) != 0:
-        print('$stippled_hr\n Docker\n$stippled_hr\n')
+        # Print the header
+        header = textwrap.dedent("""\
+                        $stippled_hr
+                        Docker
+                        $stippled_hr
+                        """)
+        print(header)
         for container in container_list:
             if container.status == 'running' or container.status == 'restarting':
                 color = 'ADFF2F'
@@ -16,10 +24,12 @@ def __get_docker():
                 color = 'FF0000'
             else:
                 color = 'FFFFFF'
-            print('%(container)s ${alignr}${color %(color)s}%(status)s${color}' % {'container': container.name,
-                                                                                   'color': color,
-
-                                                                                   'status': container.status})
+            docker_output = textwrap.dedent("%(container)s ${alignr}${color %(color)s}%(status)s${color}")
+            print(docker_output % {
+                'container': container.name,
+                'color': color,
+                'status': container.status
+            })
 
 
 def __main__():

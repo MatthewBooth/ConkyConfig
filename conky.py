@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
 import bin.cpu as cpu
-import bin.system as system
-import bin.ram as ram
-import bin.temps as temps
 import bin.disks as disks
-import bin.network as network
 import bin.docker_containers as containers
+import bin.network as network
+import bin.ram as ram
+import bin.system as system
+import bin.temps as temps
 
 
 def __main__():
