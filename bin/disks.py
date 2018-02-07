@@ -1,7 +1,10 @@
 #!/usr/bin/python3
+import re
 import textwrap
 
 import psutil
+import config.config as config
+import bin.utils as utils
 
 
 def __get_disks():
@@ -16,21 +19,44 @@ def __get_disks():
                 """)
     print(header)
 
+    exclude_list = config.config['disks']['exclude']
+
     # Loop over the partitions and draw each one as a bar with usage stats
     for p in partitions_list:
         # Root will not show as / unless we intervene
         name = p.mountpoint
+
+        # Exclude items in the exclude list
+        exclude = False
+        for e in exclude_list:
+            if utils.full_match(e, name):
+                exclude = True
+
+        if exclude is True:
+            continue
+
+        # Set the label name
         if name == '/':
             label = 'Root'
         else:
             label = name
-        # Ignore Docker mounts
-        if "docker" not in name:
-            disk_output = textwrap.dedent("""\
-            %(label)s ${alignr}${fs_used %(name)s}B / ${fs_size %(name)s}B
-            ${fs_bar %(name)s}
-            """)
-            print(disk_output % {'label': label, 'name': name})
+
+        # Write the data
+        disk_output = textwrap.dedent("""\
+        %(label)s ${alignr}${fs_used %(name)s}B / ${fs_size %(name)s}B
+        ${fs_bar %(name)s}
+        """)
+        print(disk_output % {'label': label, 'name': name})
+
+
+def __full_match(match_object, full_string):
+    if match_object is None:
+        return False
+    start, stop = match_object.span()
+    if stop-start == len(full_string):
+        return True
+    else:
+        return False
 
 
 def __main__():

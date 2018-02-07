@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+import re
 
 
 def write_text_to_file(content, file):
@@ -68,3 +69,14 @@ def sizeof_fmt(num, suffix='B'):
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
     return "%.1f%s%s" % (num, 'Yi', suffix)
+
+
+def full_match(regex, full_string):
+    match_object = re.match(regex, full_string)
+    if match_object is None:
+        return False
+    start, stop = match_object.span()
+    if stop-start == len(full_string):
+        return True
+    else:
+        return False

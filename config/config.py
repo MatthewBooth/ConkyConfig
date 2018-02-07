@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 
 config = {
-
+    'disks': {
+        'exclude': [
+            "^/boot/.*$",
+            "^/var/lib/docker/.*$"
+        ]
+    }
 }
 
 colors = {
