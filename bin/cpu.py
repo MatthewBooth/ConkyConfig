@@ -4,8 +4,8 @@ import psutil
 from bin.color_scale import get_scaled_color
 
 
-def get_cpu():
-    cpu_percent_list = list(psutil.cpu_percent(interval=1, percpu=True))
+def __get_cpu():
+    cpu_percent_list = list(psutil.cpu_percent(interval=0.1, percpu=True))
     cpu_freq = psutil.cpu_freq(percpu=False)
 
     if len(cpu_percent_list) != 0:
@@ -14,3 +14,7 @@ def get_cpu():
             print('CPU %(num)s:${alignr}%(color)s%(cpu)s${color}%%' % {'num': num, 'color': get_scaled_color(cpu), 'cpu': str(cpu)})
 
     print('$cpugraph')
+
+
+def __main__():
+    __get_cpu()

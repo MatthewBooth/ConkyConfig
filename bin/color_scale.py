@@ -21,7 +21,7 @@ def get_scaled_color(value):
         return '${color ffd100}'
     elif 80 <= value <= 89:
         return '${color ffa900}'
-    elif 90 <= value <= 99:
+    elif 90 <= value <= 100:
         return '${color ff8100}'
     else:
         return '${color ffffff}'

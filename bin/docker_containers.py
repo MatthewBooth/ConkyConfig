@@ -3,7 +3,7 @@
 import docker
 
 
-def get_docker():
+def __get_docker():
     client = docker.from_env()
 
     container_list = client.containers.list()
@@ -18,4 +18,9 @@ def get_docker():
                 color = 'FFFFFF'
             print('%(container)s ${alignr}${color %(color)s}%(status)s${color}' % {'container': container.name,
                                                                                    'color': color,
+
                                                                                    'status': container.status})
+
+
+def __main__():
+    __get_docker()

@@ -24,7 +24,7 @@ conky.config = {
 	gap_y = 35,
 
 	background = false,
-	cpu_avg_samples = 2,
+	cpu_avg_samples = 1,
 	default_color = white,
 	default_shade_color = black,
 	draw_borders = false,
