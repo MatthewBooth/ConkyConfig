@@ -23,7 +23,7 @@ def __get_cpu():
         })
         # Loop over the cores and print out their percentage used
         for num, cpu in enumerate(cpu_percent_list, start=1):
-            print("CPU %(num)s:${alignr}%(color)s%(cpu)s${color}%%" % {
+            print("CPU %(num)s:${alignr}${color %(color)s}%(cpu)s${color}%%" % {
                 'num': num,
                 'color': get_scaled_color(int(cpu)),
                 'cpu': str(int(cpu))
