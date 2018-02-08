@@ -12,8 +12,8 @@ config = {
 colors = {
     'bars': 'FFFFFF',
     'graphs': {
-        'gradient1': '',
-        'gradient2': ''
+        'gradient1': 'FFFFFF',
+        'gradient2': 'FFFFFF'
     },
     'docker': {
         'running': 'ADFF2F',

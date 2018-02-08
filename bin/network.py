@@ -2,7 +2,7 @@
 
 import netifaces
 import textwrap
-
+from config.config import colors
 
 def __get_network():
     # Get the default gateways
@@ -32,14 +32,16 @@ def __get_network():
 
         print(header % {'interface': interface})
 
+        colors_graphs = colors['graphs']
+
         # Show the graphs and bitrates
         network_output = textwrap.dedent("""\
         Down$alignc ${downspeed %(interface)s}$color$alignr ${totaldown %(interface)s}
-        ${downspeedgraph %(interface)s}
+        ${downspeedgraph %(interface)s 30,0 %(color1)s %(color2)s s -t}
         Up$alignc ${upspeed %(interface)s}$color$alignr ${totalup %(interface)s}
-        ${upspeedgraph %(interface)s}
+        ${upspeedgraph %(interface)s 30,0 %(color1)s %(color2)s s -t}
         """)
-        print(network_output % {'interface': interface})
+        print(network_output % {'interface': interface, 'color1': colors_graphs['gradient1'], 'color2': colors_graphs['gradient2']})
 
 
 def __main__():

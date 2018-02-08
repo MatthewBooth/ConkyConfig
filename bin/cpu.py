@@ -4,6 +4,7 @@ import textwrap
 import psutil
 
 from bin.color_scale import get_scaled_color
+from config.config import colors
 
 
 def __get_cpu():
@@ -29,7 +30,10 @@ def __get_cpu():
                 'cpu': str(int(cpu))
             })
         # Draw the CPU graph
-        print('$cpugraph')
+        colors_graphs = colors['graphs']
+        print('${cpugraph cpu0 30,0 %(color1)s %(color2)s s -t}'
+              % {'color1': colors_graphs['gradient1'], 'color2': colors_graphs['gradient2']}
+              )
 
 
 def __main__():
