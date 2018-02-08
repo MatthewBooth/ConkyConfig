@@ -36,7 +36,7 @@ sudo apt install python3 python3-setuptools python3-pip -y
 ```
 
 ```bash
-sudo pip3 install jinja2 docker psutil py3nvml netifaces   
+sudo pip3 install jinja2 docker psutil py3nvml netifaces colour  
 ```
 
 Run the installation script:
