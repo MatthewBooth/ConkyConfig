@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import re
 import textwrap
 
 import psutil
@@ -20,6 +19,8 @@ def __get_disks():
     print(header)
 
     exclude_list = config.config['disks']['exclude']
+
+    bar_color = config.colors['bars']
 
     # Loop over the partitions and draw each one as a bar with usage stats
     for p in partitions_list:
@@ -44,19 +45,9 @@ def __get_disks():
         # Write the data
         disk_output = textwrap.dedent("""\
         %(label)s ${alignr}${fs_used %(name)s}B / ${fs_size %(name)s}B
-        ${fs_bar %(name)s}
+        ${color %(color)s}${fs_bar %(name)s}{$color}
         """)
-        print(disk_output % {'label': label, 'name': name})
-
-
-def __full_match(match_object, full_string):
-    if match_object is None:
-        return False
-    start, stop = match_object.span()
-    if stop-start == len(full_string):
-        return True
-    else:
-        return False
+        print(disk_output % {'label': label, 'name': name, 'color': bar_color})
 
 
 def __main__():

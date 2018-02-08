@@ -10,7 +10,7 @@ config = {
 }
 
 colors = {
-    'bars': '',
+    'bars': 'FFFFFF',
     'graphs': {
         'gradient1': '',
         'gradient2': ''
