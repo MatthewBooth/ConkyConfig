@@ -10,6 +10,14 @@ config = {
 }
 
 colors = {
+    'cpu': {
+        'start': 'FFFF00',
+        'end': 'FFFF00'
+    },
+    'temperature': {
+        'start': 'FF0000',
+        'end': 'FF0000'
+    },
     'bars': 'FFFFFF',
     'graphs': {
         'gradient1': 'FFFFFF',
