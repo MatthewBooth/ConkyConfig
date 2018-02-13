@@ -6,17 +6,39 @@ config = {
             "^/boot/.*$",
             "^/var/lib/docker/.*$"
         ]
+    },
+    'cpu': {
+        'levels': {
+            'high': 70,
+            'critical': 90
+        }
+    },
+    'gpu': {
+        'levels': {
+            'high': 70,
+            'critical': 90
+        }
     }
 }
 
 colors = {
     'cpu': {
-        'start': 'FFFF00',
-        'end': 'FFFF00'
+        'start': 'FFFFFF',
+        'end': '008000',
+        'high': 'FF4500',
+        'critical': 'FF0000'
+    },
+    'gpu': {
+        'start': 'FFFFFF',
+        'end': '008000',
+        'high': 'FF4500',
+        'critical': 'FF0000'
     },
     'temperature': {
-        'start': 'FF0000',
-        'end': 'FF0000'
+        'start': 'FFFFFF',
+        'end': '008000',
+        'high': 'FF4500',
+        'critical': 'FF0000'
     },
     'bars': 'FFFFFF',
     'graphs': {

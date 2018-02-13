@@ -3,7 +3,7 @@ import textwrap
 
 import psutil
 
-from bin.color_scale import get_scaled_color
+from bin.color_scale import get_cpu_usage_color
 from config.config import colors
 
 
@@ -26,7 +26,7 @@ def __get_cpu():
         for num, cpu in enumerate(cpu_percent_list, start=1):
             print("CPU %(num)s:${alignr}${color %(color)s}%(cpu)s${color}%%" % {
                 'num': num,
-                'color': get_scaled_color(int(cpu)),
+                'color': get_cpu_usage_color(int(cpu)),
                 'cpu': str(int(cpu))
             })
         # Draw the CPU graph
