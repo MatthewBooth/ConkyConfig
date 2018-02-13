@@ -20,7 +20,7 @@ All of this is written in Python. This was my first attempt at Python and I've n
 Install Conky and dependencies:
 
 ```bash
-sudo apt install conky-all supervisor -y
+sudo apt install conky-all supervisor lm-sensors -y
 ```
 
 Clone this directory to `~/.conky`:
@@ -37,6 +37,12 @@ sudo apt install python3 python3-setuptools python3-pip -y
 
 ```bash
 sudo pip3 install jinja2 docker psutil py3nvml netifaces colour fcache 
+```
+
+Initialise the temperature sensors and follow the instructions step by step (you can mostly just stick with the defaults):
+
+```bash
+sudo sensors-detect
 ```
 
 Run the installation script:
