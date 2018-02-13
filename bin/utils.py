@@ -76,7 +76,7 @@ def full_match(regex, full_string):
     if match_object is None:
         return False
     start, stop = match_object.span()
-    if stop-start == len(full_string):
+    if stop - start == len(full_string):
         return True
     else:
         return False

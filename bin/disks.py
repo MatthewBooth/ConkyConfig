@@ -2,8 +2,9 @@
 import textwrap
 
 import psutil
-import config.config as config
+
 import bin.utils as utils
+import config.config as config
 
 
 def __get_disks():

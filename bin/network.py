@@ -2,7 +2,9 @@
 
 import netifaces
 import textwrap
+
 from config.config import colors
+
 
 def __get_network():
     # Get the default gateways
@@ -41,7 +43,8 @@ def __get_network():
         Up$alignc ${upspeed %(interface)s}$color$alignr ${totalup %(interface)s}
         ${upspeedgraph %(interface)s 30,0 %(color1)s %(color2)s s -t}
         """)
-        print(network_output % {'interface': interface, 'color1': colors_graphs['gradient1'], 'color2': colors_graphs['gradient2']})
+        print(network_output % {'interface': interface, 'color1': colors_graphs['gradient1'],
+                                'color2': colors_graphs['gradient2']})
 
 
 def __main__():

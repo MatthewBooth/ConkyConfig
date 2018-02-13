@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from colour import Color as Colour
+
 from config.config import colors
 
 
