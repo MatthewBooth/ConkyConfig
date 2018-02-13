@@ -8,8 +8,11 @@ import jinja2
 def __write_text_to_file(content, file):
     if os.path.exists(file):
         f = open(file, 'w+')
-        f.write(content)
-        f.close()
+    else:
+        f = open(file, 'x')
+
+    f.write(content)
+    f.close()
 
 
 def __render_jinja_template(tpl_path, variables):
