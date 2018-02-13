@@ -7,7 +7,7 @@ from config.config import config
 
 
 def get_cpu_usage_color(value):
-    temp_color = colors['gpu']
+    temp_color = colors['cpu']
 
     current = int(value)
     high = config['gpu']['levels']['high']
