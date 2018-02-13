@@ -24,13 +24,13 @@ config = {
 colors = {
     'cpu': {
         'start': 'FFFFFF',
-        'end': '008000',
+        'end': '7CFC00',
         'high': 'FF4500',
         'critical': 'FF0000'
     },
     'gpu': {
         'start': 'FFFFFF',
-        'end': '008000',
+        'end': '7CFC00',
         'high': 'FF4500',
         'critical': 'FF0000'
     },
