@@ -40,7 +40,7 @@ def __get_cpu_temps():
             'temp': cpu_temp
         })
 
-        for item in range(1, 5):
+        for item in range(1, len(temps_list)):
             core_temp = int(temps_list[item].current)
             print(' Core %(i)s: ${alignr}${color %(color)s}%(temp)s${color}°C' % {
                 'i': item,
